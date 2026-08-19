@@ -36,3 +36,11 @@ class RedditSource(ABC):
     async def close(self) -> None:
         """Release any held connections or resources."""
         ...
+
+    @abstractmethod
+    async def post_comment(self, post_id: str, body: str) -> str:
+        """Post a comment reply to Reddit. Returns the new comment ID.
+
+        Only ever called from the LIVE posting path (reddit_agent.posting).
+        """
+        ...

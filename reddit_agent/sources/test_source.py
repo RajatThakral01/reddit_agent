@@ -101,3 +101,11 @@ class TestRedditSource(RedditSource):
 
     async def close(self) -> None:
         pass  # Nothing to close for test source
+
+    async def post_comment(self, post_id: str, body: str) -> str:
+        """Test source can never post to Reddit — this must never be called.
+
+        The DRY_RUN path structurally never calls this; if it IS called it is a
+        bug and should fail loudly.
+        """
+        raise NotImplementedError("TestRedditSource.post_comment must never be called")

@@ -13,3 +13,6 @@ class LiveRedditSource(RedditSource):
 
     async def close(self):
         pass
+
+    async def post_comment(self, post_id: str, body: str) -> str:
+        raise NotImplementedError("LiveRedditSource posting will be implemented in a later phase")
