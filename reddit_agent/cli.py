@@ -17,10 +17,13 @@ ENABLED_LABEL = "Kill switch: ENABLED \u26d4"
 DISABLED_LABEL = "Kill switch: DISABLED \u2705"
 ENV_VAR_RE = re.compile(r"^([A-Z][A-Z0-9_]*)\s*=")
 SECRET_NAME_PARTS = ("secret", "key", "password", "token")
+SECRET_ENV_NAMES = {"LLM_API_KEY", "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET"}
 
 
 def is_secret_var(name: str) -> bool:
     """Return True if a variable name refers to a secret that must never be printed."""
+    if name in SECRET_ENV_NAMES:
+        return True
     return any(part in name.lower() for part in SECRET_NAME_PARTS)
 
 
