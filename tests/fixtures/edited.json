@@ -1,0 +1,34 @@
+[
+  {
+    "_scenario": "edited_original",
+    "id": "t3_edit001",
+    "title": "PC restarts randomly during gaming",
+    "body": "My PC restarts randomly when I play demanding games. Temps seem fine but I am not sure.",
+    "author": "user_edit",
+    "subreddit": "techsupport",
+    "created_utc": "2026-08-19T10:00:00Z",
+    "url": "https://reddit.com/r/techsupport/comments/edit001",
+    "flair": null,
+    "score": 6,
+    "is_locked": false,
+    "is_deleted": false,
+    "is_removed": false,
+    "is_archived": false
+  },
+  {
+    "_scenario": "edited_changed_body",
+    "id": "t3_edit001",
+    "title": "PC restarts randomly during gaming",
+    "body": "Update: I checked the Event Viewer and it shows kernel-power 41. It also happens during light load now, and I replaced the PSU with a new 850W unit but it still restarts.",
+    "author": "user_edit",
+    "subreddit": "techsupport",
+    "created_utc": "2026-08-19T12:00:00Z",
+    "url": "https://reddit.com/r/techsupport/comments/edit001",
+    "flair": null,
+    "score": 6,
+    "is_locked": false,
+    "is_deleted": false,
+    "is_removed": false,
+    "is_archived": false
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "_scenario": "duplicate_original",
+    "id": "t3_dup001",
+    "title": "External hard drive keeps disconnecting mid-transfer",
+    "body": "My external hard drive disconnects every time I copy files larger than a few GB. I have tried different ports and cables.",
+    "author": "user_dup",
+    "subreddit": "techsupport",
+    "created_utc": "2026-08-19T10:00:00Z",
+    "url": "https://reddit.com/r/techsupport/comments/dup001",
+    "flair": null,
+    "score": 5,
+    "is_locked": false,
+    "is_deleted": false,
+    "is_removed": false,
+    "is_archived": false
+  },
+  {
+    "_scenario": "duplicate_refetch_same_content",
+    "id": "t3_dup001",
+    "title": "External hard drive keeps disconnecting mid-transfer",
+    "body": "My external hard drive disconnects every time I copy files larger than a few GB. I have tried different ports and cables.",
+    "author": "user_dup",
+    "subreddit": "techsupport",
+    "created_utc": "2026-08-19T10:00:00Z",
+    "url": "https://reddit.com/r/techsupport/comments/dup001",
+    "flair": null,
+    "score": 5,
+    "is_locked": false,
+    "is_deleted": false,
+    "is_removed": false,
+    "is_archived": false
+  }
+]
