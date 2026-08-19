@@ -24,3 +24,11 @@ dev = [
 
 [project.scripts]
 reddit-agent = "reddit_agent.cli:cli"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = [
+    "ignore:cannot collect test class 'TestRedditSource':pytest.PytestCollectionWarning",
+]
