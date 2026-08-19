@@ -1,0 +1,21 @@
+{
+  "evaluation_id": "DAXVORA-RAJAT-2026-08-A01",
+  "project": "Project 01 — Reddit Troubleshooting Monitor & Reply Agent",
+  "session_id": "",
+  "started_at": "",
+  "ended_at": "",
+  "provider": "DeepSeek",
+  "model": "",
+  "version": "",
+  "prompts_or_hashes": [],
+  "export_path": "",
+  "skills_tools": [],
+  "generated_files": [],
+  "human_modified_files": [],
+  "verification": [],
+  "costs": {
+    "total_usd": 0,
+    "breakdown": []
+  },
+  "notes": ""
+}
