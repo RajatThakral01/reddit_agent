@@ -16,6 +16,12 @@ from reddit_agent.sources import get_source
 ENABLED_LABEL = "Kill switch: ENABLED \u26d4"
 DISABLED_LABEL = "Kill switch: DISABLED \u2705"
 ENV_VAR_RE = re.compile(r"^([A-Z][A-Z0-9_]*)\s*=")
+SECRET_NAME_PARTS = ("secret", "key", "password", "token")
+
+
+def is_secret_var(name: str) -> bool:
+    """Return True if a variable name refers to a secret that must never be printed."""
+    return any(part in name.lower() for part in SECRET_NAME_PARTS)
 
 
 @click.group()
@@ -134,26 +140,34 @@ def kill_switch_status():
 def check_env():
     """Validate all required environment variables are set."""
     env_example = Path(__file__).resolve().parents[1] / ".env.example"
-    missing: list[str] = []
-    checked = 0
-
     if not env_example.exists():
         click.echo(f"❌ .env.example not found at {env_example}", err=True)
         raise SystemExit(1)
 
+    names: list[str] = []
     for line in env_example.read_text(encoding="utf-8").splitlines():
         match = ENV_VAR_RE.match(line.strip())
-        if not match:
-            continue
-        name = match.group(1)
-        checked += 1
-        if not os.environ.get(name):
+        if match:
+            names.append(match.group(1))
+
+    width = max((len(name) for name in names), default=0) + 2
+    missing: list[str] = []
+
+    for name in names:
+        value = os.environ.get(name, "")
+        if not value:
             missing.append(name)
-            click.echo(f"❌ {name} (missing)")
+            click.echo(f"❌ {name.ljust(width)} [MISSING]")
+        elif is_secret_var(name):
+            click.echo(f"✅ {name.ljust(width)} [SET]")
         else:
-            click.echo(f"✅ {name}")
+            click.echo(f"✅ {name.ljust(width)} = {value}")
+
+    total = len(names)
+    set_count = total - len(missing)
+    click.echo(f"{set_count}/{total} variables set")
 
     if missing:
-        click.echo(f"Missing {len(missing)} of {checked} required variables.")
+        click.echo(f"Missing: {', '.join(missing)}", err=True)
         raise SystemExit(1)
-    click.echo(f"All {checked} environment variables present.")
+    click.echo("✅ All required environment variables present.")
