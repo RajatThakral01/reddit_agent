@@ -1,21 +1,142 @@
 {
   "evaluation_id": "DAXVORA-RAJAT-2026-08-A01",
   "project": "Project 01 — Reddit Troubleshooting Monitor & Reply Agent",
-  "session_id": "",
-  "started_at": "",
-  "ended_at": "",
+  "session_id": "70fb836e-6198-4477-8c1a-a6cd26b0a92f",
+  "started_at": "2026-08-19T17:17:00+00:00",
+  "ended_at": "2026-08-19T19:24:25+00:00",
   "provider": "DeepSeek",
-  "model": "",
-  "version": "",
-  "prompts_or_hashes": [],
-  "export_path": "",
-  "skills_tools": [],
-  "generated_files": [],
-  "human_modified_files": [],
-  "verification": [],
+  "model": "deepseek-v4-flash",
+  "version": "v4-flash-latest",
+  "prompts_or_hashes": [
+    "P1 project scaffold + compliance files",
+    "P2 typed exceptions module",
+    "P3 config system + validation (FR-1)",
+    "P4 database schema + migrations (FR-3)",
+    "P5 observability/audit events (FR-12)",
+    "P6 domain model + 7 fixture categories",
+    "P7 RedditSource interface + TestRedditSource",
+    "P8 ingest pipeline (FR-2/3/4/5)",
+    "P9 scoring engine + cost tracker (FR-6/14)",
+    "P10 reply generation + guardrails (FR-7/8/8a)",
+    "P11 posting gate + kill switch + LIVE (FR-9/9a/10/11)",
+    "P12 pipeline orchestrator + CLI (FR-13)",
+    "P13 LiveRedditSource (asyncpraw)",
+    "P14 README + architecture diagram + check-env",
+    "P15 final verification + disclosure + submission"
+  ],
+  "export_path": "PROMPTS.md",
+  "skills_tools": [
+    "opencode CLI (file edit, bash, git, pytest, psql, subagents)",
+    "pytest + pytest-asyncio + pytest-mock",
+    "click CLI",
+    "asyncpraw/asyncprawcore (runtime, not run)",
+    "PostgreSQL local"
+  ],
+  "generated_files": [
+    "reddit_agent/__init__.py",
+    "reddit_agent/__main__.py",
+    "reddit_agent/cli.py",
+    "reddit_agent/config.py",
+    "reddit_agent/exceptions.py",
+    "reddit_agent/models.py",
+    "reddit_agent/observability.py",
+    "reddit_agent/ingest.py",
+    "reddit_agent/scoring.py",
+    "reddit_agent/cost_tracker.py",
+    "reddit_agent/guardrails.py",
+    "reddit_agent/reply_gen.py",
+    "reddit_agent/posting.py",
+    "reddit_agent/pipeline.py",
+    "reddit_agent/sources/__init__.py",
+    "reddit_agent/sources/base.py",
+    "reddit_agent/sources/test_source.py",
+    "reddit_agent/sources/live.py",
+    "reddit_agent/db/__init__.py",
+    "reddit_agent/db/models.py",
+    "reddit_agent/db/connection.py",
+    "reddit_agent/db/migrations/001_initial_schema.sql",
+    "reddit_agent/db/migrations/002_seed.sql",
+    "admin_api/__init__.py",
+    "tests/test_config.py",
+    "tests/test_db.py",
+    "tests/test_observability.py",
+    "tests/test_models.py",
+    "tests/test_sources.py",
+    "tests/test_ingest.py",
+    "tests/test_scoring.py",
+    "tests/test_guardrails.py",
+    "tests/test_reply_gen.py",
+    "tests/test_posting.py",
+    "tests/test_pipeline_e2e.py",
+    "tests/test_live_source.py",
+    "tests/fixtures/positive.json",
+    "tests/fixtures/negative.json",
+    "tests/fixtures/ambiguous.json",
+    "tests/fixtures/edge_cases.json",
+    "tests/fixtures/duplicate.json",
+    "tests/fixtures/edited.json",
+    "tests/fixtures/risk.json",
+    "conftest.py",
+    ".gitignore",
+    ".env.example",
+    "pyproject.toml",
+    "README.md",
+    "docs/architecture.md",
+    "COST_AND_LIMITS.md",
+    "VERIFICATION_LOG.md",
+    "test_report.txt",
+    "PROMPTS.md",
+    "AI_USAGE.md",
+    "ai-usage.json"
+  ],
+  "human_modified_files": [
+    {
+      "file": ".env.example",
+      "note": "variable list + starter values supplied by the human in the initial prompt"
+    },
+    {
+      "file": "pyproject.toml",
+      "note": "dependency list supplied by the human; AI added the [tool.pytest.ini_options] section"
+    },
+    {
+      "file": "AI_USAGE.md",
+      "note": "template structure supplied by the human; content filled in by AI"
+    },
+    {
+      "file": "ai-usage.json",
+      "note": "template structure supplied by the human; content filled in by AI"
+    },
+    {
+      "file": "tests/test_posting.py",
+      "note": "human review flagged duplicated _seed_post calls; duplicates removed"
+    }
+  ],
+  "verification": [
+    "pytest tests/ -v --tb=short -> 91 passed, 3 skipped (live only)",
+    "git grep secrets scan -> no real secrets found",
+    "git status -> no .env tracked",
+    "manual CLI: 6-subreddit ConfigError, check-env missing var, kill-switch cycle, run --once zero-network",
+    "automated gates: idempotency, kill switch, cost cap, guardrails, config limits"
+  ],
   "costs": {
-    "total_usd": 0,
-    "breakdown": []
+    "total_usd": 0.0,
+    "breakdown": [
+      {
+        "item": "LLM scoring/generation (runtime provider)",
+        "usd": 0.0,
+        "note": "All tests mocked the provider; CLI verification runs made zero LLM calls"
+      },
+      {
+        "item": "Reddit API",
+        "usd": 0.0,
+        "note": "Test source only; live credentials not available"
+      },
+      {
+        "item": "PostgreSQL (local)",
+        "usd": 0.0,
+        "note": "local instance, no cloud cost"
+      }
+    ]
   },
-  "notes": ""
+  "notes": "No money was spent during build or verification. The runtime LLM provider (deepseek-chat) was never called unmocked; live Reddit integration was not exercised because credentials/approval were unavailable, and this limitation is stated openly in the README and AI_USAGE.md."
 }
